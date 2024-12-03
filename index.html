@@ -158,7 +158,7 @@
             }, 3000);
         }
 
-        convertButton.addEventListener('click', () => {
+        function convertCoordinates() {
             const url = urlInput.value;
             const coordsRegex = /!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/;
             const placeRegex = /\/place\/([^/]+)\//;
@@ -182,6 +182,15 @@
                 result.style.display = 'block';
             } else {
                 showToast('좌표를 찾을 수 없습니다. 올바른 구글 맵스 URL을 입력해주세요.');
+            }
+        }
+
+        convertButton.addEventListener('click', convertCoordinates);
+
+        urlInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                convertCoordinates();
             }
         });
 
