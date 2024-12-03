@@ -1,6 +1,11 @@
 # 구글 맵스 URL → GPS 좌표 변환기
 
-<img src="./public/url_to_gps.jpg" alt="구글 맵스 URL → GPS 좌표 변환기" width="100%">
+<img src="./public/url_to_gps.jpg" alt="구글 맵스 URL → GPS 좌표 변환기" width="60%">
+
+## 바로 사용하기
+
+바로 사용하기 ➡️ [https://doscode-kr.github.io/gps-to-point](https://doscode-kr.github.io/gps-to-point)
+
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
@@ -29,4 +34,4 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
- 
+ 그러나 다시 index.html 파일 하나로 생성
