@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
 interface URLInputProps {
-  onCoordinatesExtracted: (lat: string, lng: string) => void;
+  onCoordinatesExtracted: (lat: string, lng: string, placeName?: string) => void;
 }
 
 export const URLInput = ({ onCoordinatesExtracted }: URLInputProps) => {
@@ -13,12 +13,16 @@ export const URLInput = ({ onCoordinatesExtracted }: URLInputProps) => {
 
   const extractCoordinates = () => {
     try {
-      const regex = /!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/;
-      const match = url.match(regex);
+      const coordsRegex = /!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/;
+      const placeRegex = /\/place\/([^/]+)\//;
+      
+      const coordsMatch = url.match(coordsRegex);
+      const placeMatch = url.match(placeRegex);
 
-      if (match) {
-        const [, latitude, longitude] = match;
-        onCoordinatesExtracted(latitude, longitude);
+      if (coordsMatch) {
+        const [, latitude, longitude] = coordsMatch;
+        const placeName = placeMatch ? placeMatch[1] : undefined;
+        onCoordinatesExtracted(latitude, longitude, placeName);
       } else {
         toast({
           title: "좌표를 찾을 수 없습니다",

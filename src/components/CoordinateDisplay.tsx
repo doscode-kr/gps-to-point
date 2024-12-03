@@ -6,9 +6,10 @@ import { useToast } from "@/components/ui/use-toast";
 interface CoordinateDisplayProps {
   latitude: string;
   longitude: string;
+  placeName?: string;
 }
 
-export const CoordinateDisplay = ({ latitude, longitude }: CoordinateDisplayProps) => {
+export const CoordinateDisplay = ({ latitude, longitude, placeName }: CoordinateDisplayProps) => {
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
 
@@ -36,6 +37,12 @@ export const CoordinateDisplay = ({ latitude, longitude }: CoordinateDisplayProp
     <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
       <h2 className="text-xl font-semibold mb-4 text-google-blue">변환된 좌표</h2>
       <div className="space-y-2">
+        {placeName && (
+          <div className="flex items-center justify-between bg-gray-50 p-3 rounded">
+            <span className="text-gray-600">장소:</span>
+            <span className="font-mono">{decodeURIComponent(placeName)}</span>
+          </div>
+        )}
         <div className="flex items-center justify-between bg-gray-50 p-3 rounded">
           <span className="text-gray-600">위도:</span>
           <span className="font-mono">{latitude}</span>

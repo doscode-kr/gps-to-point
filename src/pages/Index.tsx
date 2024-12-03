@@ -6,10 +6,11 @@ const Index = () => {
   const [coordinates, setCoordinates] = useState<{
     latitude: string;
     longitude: string;
+    placeName?: string;
   } | null>(null);
 
-  const handleCoordinatesExtracted = (lat: string, lng: string) => {
-    setCoordinates({ latitude: lat, longitude: lng });
+  const handleCoordinatesExtracted = (lat: string, lng: string, placeName?: string) => {
+    setCoordinates({ latitude: lat, longitude: lng, placeName });
   };
 
   return (
@@ -31,6 +32,7 @@ const Index = () => {
             <CoordinateDisplay
               latitude={coordinates.latitude}
               longitude={coordinates.longitude}
+              placeName={coordinates.placeName}
             />
           )}
         </div>
